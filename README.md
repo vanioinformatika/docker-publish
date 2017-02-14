@@ -1,10 +1,10 @@
-<h1 align="center">
+<h1 align="left">
   Docker Publish
   <br>
   <br>
 </h1>
 
-<p align="center">
+<p align="left">
   <a href="https://travis-ci.org/vanioinformatika/docker-publish"><img src="https://travis-ci.org/vanioinformatika/docker-publish.svg?branch=master" alt="Travis"></a>
   <a href="http://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
   <a href="https://www.npmjs.com/package/standard"><img src="https://img.shields.io/npm/dm/standard.svg" alt="npm downloads"></a>
