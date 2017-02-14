@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.12 - 2017-02-14
+
+- mistyped start script name
+
 ## 1.3.11 - 2017-02-14
 
 - fixing bin/ start script
