@@ -69,9 +69,9 @@ Where _0bd4c74_ is the last commit id.
 
 ## Configuration
 
-There is zero configuration. All parameters comes from package.json *name* and *version* properties.
+There is *zero configuration.* All parameters comes from package.json: *name* and *version* properties.
 
-_* Maybe you want to use your own private docker repository, in this case see the next chapter._
+_* Maybe you want to use your own private docker repository, in this case please see the next chapter._
 
 ### Customization
 
