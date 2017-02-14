@@ -10,6 +10,13 @@
     "preversion": "git push && npm test",
     "postversion": "git push && git push --tags"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vanioinformatika/docker-publish.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vanioinformatika/docker-publish/issues"
+  },
   "keywords": [
     "npm",
     "version",
