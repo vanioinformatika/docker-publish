@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.15 - 2017-02-14
+
+- fixing README.md
+
 ## 1.3.14 - 2017-02-14
 
 - renaming bin/ script file
