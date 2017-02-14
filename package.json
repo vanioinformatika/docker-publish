@@ -1,5 +1,5 @@
 {
-  "name": "docker-publish",
+  "name": "@vanioinformatika/docker-publish",
   "version": "1.3.5",
   "description": "Pull image to the Docker Registry with tags",
   "main": "index.js",
