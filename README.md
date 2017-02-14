@@ -11,7 +11,7 @@
   <a href="https://www.npmjs.com/package/standard"><img src="https://img.shields.io/npm/v/standard.svg" alt="npm version"></a>
 </p>
 
-<h4 align="center">Simple Docker tagging and publishing from npm</h4>
+<h4 align="left">Simple Docker tagging and publishing from npm</h4>
 
 <br>
 
