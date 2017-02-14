@@ -7,6 +7,8 @@
     "test": "mocha"
   },
   "keywords": [
+    "npm",
+    "version",
     "docker",
     "tag",
     "tags",
@@ -23,5 +25,9 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "standard": "^8.6.0"
+  },
+  "engines":
+  {
+    "node" : ">=6.0.0"
   }
 }

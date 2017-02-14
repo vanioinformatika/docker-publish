@@ -52,6 +52,15 @@ docker push docker-publish:v1.3.4-1-gb4c008b
 
 *v1.3.5-RELEASE-g993df1b:* v1.3.5 - your version number from project.json, 5 - commit's number since v1.3.4 tag, gb4c008b - last (fifth) git commit ID (7 chars
 
+If you have never tagged git commit, then tag shows:
+
+```
+skipped: docker tag docker-publish:latest docker-publish:0bd4c74
+skipped: docker push docker-publish:0bd4c74
+```
+
+Where _0bd4c74_ is the last commit id.
+
 ## Configuration
 
 There is zero configuration. All parameters comes from package.json *name* and *version* properties.
