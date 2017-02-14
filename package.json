@@ -4,7 +4,7 @@
   "description": "Simple Docker tagging and publishing from npm",
   "author": "István Pató <istvan.pato@gmail.com>",
   "license": "MIT",
-  "main": "bin/docker-publish.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "mocha",
     "preversion": "git push && npm test",
@@ -29,7 +29,7 @@
     "standard": "^8.6.0"
   },
   "bin": {
-    "docker-publish": "bin/docker-publish.js"
+    "docker-publish": "bin/index.js"
   },
   "engines": {
     "node": ">=6.0.0"

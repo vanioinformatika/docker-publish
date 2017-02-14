@@ -27,7 +27,7 @@ const tag = shell.exec('git describe --tags --always', options).replace(/(\r\n|\
 const strictTag = shell.exec('git describe --tags --always --abbrev=0', options).replace(/(\r\n|\n|\r)/gm, '')
 const id = shell.exec('git rev-parse --short HEAD', options).replace(/(\r\n|\n|\r)/gm, '')
 
-const dockerPublish = require('./docker-publish.js')(shell, project, tag, strictTag, id)
+const dockerPublish = require('../docker-publish.js')(shell, project, tag, strictTag, id)
 
 // execute commands
 dockerPublish.getCommandQueue().forEach((cmd) => {
