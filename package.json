@@ -1,6 +1,6 @@
 {
   "name": "@vanioinformatika/docker-publish",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "Simple Docker tagging and publishing from npm",
   "main": "index.js",
   "scripts": {
