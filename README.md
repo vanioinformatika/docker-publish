@@ -18,13 +18,13 @@
 Install:
 
 ```
-npm i -D docker-publish
+npm i -D @vanioinformatika/docker-publish
 ```
 
 Creating tags and push into Docker Registry with one command.
 
 ```
-npm run docker-publish
+npm run @vanioinformatika/docker-publish
 ```
 
 ## Releasing
