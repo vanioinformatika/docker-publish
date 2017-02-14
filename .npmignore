@@ -1,0 +1,5 @@
+test/
+.travis.yml
+badge.png
+badge.svg
+CONTRIBUTING.md
