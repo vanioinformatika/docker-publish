@@ -1,6 +1,8 @@
+#!/usr/bin/env node
+
 const debug = require('debug')('docker-publish')
 const shell = require('shelljs')
-const project = require('./package.json')
+const project = require('../../package.json')
 
 debug(`DOCKER_SKIP: ${process.env.DOCKER_SKIP}, DOCKER_SILENCE: ${process.env.DOCKER_SILENCE}`)
 
