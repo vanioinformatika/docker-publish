@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.3.9 - 2017-02-14
+
+- small changes to README.md
+
 ## 1.3.7 - 2017-02-14
 
 - npm shrinkwrap: fixing dependencies
