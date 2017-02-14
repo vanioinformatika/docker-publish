@@ -29,7 +29,7 @@
     "standard": "^8.6.0"
   },
   "bin": {
-    "loadtest": "bin/docker-publish.js"
+    "docker-publish": "bin/docker-publish.js"
   },
   "engines": {
     "node": ">=6.0.0"
