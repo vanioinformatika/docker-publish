@@ -2,7 +2,9 @@
   "name": "@vanioinformatika/docker-publish",
   "version": "1.3.10",
   "description": "Simple Docker tagging and publishing from npm",
-  "main": "index.js",
+  "author": "István Pató <istvan.pato@gmail.com>",
+  "license": "MIT",
+  "main": "bin/docker-publish.js",
   "scripts": {
     "test": "mocha",
     "preversion": "git push && npm test",
@@ -17,8 +19,6 @@
     "pull",
     "publish"
   ],
-  "author": "István Pató <istvan.pato@gmail.com>",
-  "license": "MIT",
   "dependencies": {
     "debug": "^2.6.1",
     "shelljs": "^0.7.6"
@@ -27,6 +27,9 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "standard": "^8.6.0"
+  },
+  "bin": {
+		"loadtest": "bin/docker-publish.js"
   },
   "engines": {
     "node": ">=6.0.0"
