@@ -23,8 +23,16 @@ npm i -D @vanioinformatika/docker-publish
 
 Creating tags and push into Docker Registry with one command.
 
+In package.json _postversion:_
+
 ```
-npm run @vanioinformatika/docker-publish
+postversion: "... && docker-publish"
+```
+
+or
+
+```
+node ./node_modules/.bin/docker-publish
 ```
 
 ## Releasing
