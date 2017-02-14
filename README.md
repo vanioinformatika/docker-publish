@@ -15,6 +15,12 @@
 
 <br>
 
+Install:
+
+```
+npm i -D docker-publish
+```
+
 Creating tags and push into Docker Registry with one command.
 
 ```
