@@ -4,7 +4,8 @@
   "description": "Pull image to the Docker Registry with tags",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "preversion": "git push && npm test"
   },
   "keywords": [
     "npm",
