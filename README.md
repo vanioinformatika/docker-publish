@@ -38,7 +38,7 @@ node ./node_modules/.bin/docker-publish
 
 ## Releasing
 
-*Best practice:* _postversion_ contains image building and _docker-publish., and running *npm version*
+*Best practice:* _postversion_ contains *image building* and *docker-publish,* and running *npm version*
 
 Output:
 
