@@ -24,6 +24,7 @@
     "tag",
     "tags",
     "pull",
+    "push",
     "publish"
   ],
   "dependencies": {

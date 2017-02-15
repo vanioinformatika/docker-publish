@@ -21,23 +21,26 @@ Install:
 npm i -D @vanioinformatika/docker-publish
 ```
 
-Creating tags and push into Docker Registry with one command.
+Building image, creating tags and push into Docker Registry with one command.
 
 In package.json _postversion:_
 
 ```
-postversion: "... && docker-publish"
+postversion: "... && docker build -t namespace/appname:latest . && docker-publish"
 ```
 
-or
+or with hands:
 
 ```
+docker build -t namespace/appname:latest .
 node ./node_modules/.bin/docker-publish
 ```
 
 ## Releasing
 
-*Best practice:* Running _npm version_, and _postversion_ contains _docker-publish._
+*Best practice:* _postversion_ contains image building and _docker-publish., and running *npm version*
+
+Output:
 
 ```
 docker tag docker-publish:latest docker-publish:v1
@@ -57,6 +60,8 @@ docker push docker-publish:latest
 ## Snapshot
 
 If you want to publish a _snapshot_, the image will be tagged with git commit id, and the commit's number since last version, and pushed.
+
+Output:
 ```
 
 docker tag docker-publish:latest docker-publish:v1.3.4-5-gb4c008b
