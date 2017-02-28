@@ -10,7 +10,7 @@
   <a href="https://www.npmjs.com/package/@vanioinformatika/docker-publish"><img src="https://img.shields.io/npm/dm/@vanioinformatika/docker-publish.svg" alt="npm downloads"></a>
 </p>
 
-<h4 align="left">Simple Docker tagging and publishing from npm</h4>
+<h4 align="left">Simple Docker tagging and publishing with 'npm version'</h4>
 
 <br>
 
@@ -34,6 +34,10 @@ or with hands:
 docker build -t namespace/appname:latest .
 node ./node_modules/.bin/docker-publish
 ```
+
+## Prerequisite
+
+Do not forget *installing docker* and *docker login* before using it!
 
 ## Releasing
 
