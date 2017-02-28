@@ -8,7 +8,6 @@
   <a href="https://travis-ci.org/vanioinformatika/docker-publish"><img src="https://travis-ci.org/vanioinformatika/docker-publish.svg?branch=master" alt="Travis"></a>
   <a href="http://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
   <a href="https://www.npmjs.com/package/@vanioinformatika/docker-publish"><img src="https://img.shields.io/npm/dm/@vanioinformatika/docker-publish.svg" alt="npm downloads"></a>
-  <a href="https://www.npmjs.com/package/@vanioinformatika/docker-publish"><img src="https://img.shields.io/npm/v/@vanioinformatika/docker-publish.svg" alt="npm version"></a>
 </p>
 
 <h4 align="left">Simple Docker tagging and publishing from npm</h4>
