@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0 - 2018-10-25
+
+- required NodeJS v8
+- update dependencies
+
 ## 1.3.16 - 2017-02-14
 
 - set github url
