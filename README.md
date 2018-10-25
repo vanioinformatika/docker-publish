@@ -54,15 +54,15 @@ _* Maybe you want to use your own private docker repository, in this case please
 Optionally, in package.json you can customize your docker properties:
 
 ```json
-'version': '1.3.5',
-'name': 'docker-publish',
-'config': {
-  'docker': {
-    'ns': 'namespace',
-    'url': 'docker.yourcompany.com:5000',
-    'name': 'myapp',
-    'skip': false,
-    'silence': false
+"version": "1.3.5",
+"name": "docker-publish",
+"config": {
+  "docker": {
+    "ns": "namespace",
+    "url": "docker.yourcompany.com:5000",
+    "name": "myapp",
+    "skip": false,
+    "silence": false
   }
 }
 ```
