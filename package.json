@@ -28,18 +28,18 @@
     "publish"
   ],
   "dependencies": {
-    "debug": "^2.6.1",
-    "shelljs": "^0.7.6"
+    "debug": "^4.1.0",
+    "shelljs": "^0.8.2"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.2.0",
-    "standard": "^8.6.0"
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "standard": "^11.0.0"
   },
   "bin": {
     "docker-publish": "bin/index.js"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.0.0"
   }
 }
