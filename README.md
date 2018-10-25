@@ -14,18 +14,26 @@
 
 <br>
 
+## Prerequisite
+
+Do not forget **installing docker** and running **docker login** before using it!
+
 Install:
 
 ```
 npm i -D @vanioinformatika/docker-publish
 ```
 
-Building image, creating tags and push into Docker Registry with one command.
+## Best practice
 
-In package.json _postversion:_
+Using npm _postversion_: building image, creating docker tags and push into Docker Registry with one command.
+
+In package.json set _postversion:_
 
 ```
-postversion: "... && docker build -t namespace/appname:latest . && docker-publish"
+"preversion": "git push && npm install && npm test",
+"version": "",
+"postversion": "git push && git push --tags && docker build -t namespace/$npm_package_name:latest . && docker-publish"
 ```
 
 or with hands:
@@ -35,9 +43,41 @@ docker build -t namespace/appname:latest .
 node ./node_modules/.bin/docker-publish
 ```
 
-## Prerequisite
+## Configuration
 
-Do not forget *installing docker* and *docker login* before using it!
+There is *zero configuration.* All parameters comes from package.json: *$npm_package_name* and *$npm_package_version* variable (name and version properties).
+
+_* Maybe you want to use your own private docker repository, in this case please see the next chapter._
+
+### Customization
+
+Optionally, in package.json you can customize your docker properties:
+
+```json
+'version': '1.3.5',
+'name': 'docker-publish',
+'config': {
+  'docker': {
+    'ns': 'namespace',
+    'url': 'docker.yourcompany.com:5000',
+    'name': 'myapp',
+    'skip': false,
+    'silence': false
+  }
+}
+```
+
+CLI parameters could overwites package.json properties (except version number).
+
+- *DOCKER_NS* your namespace for image; _namespace/imagename:tag_ Default: empty
+
+- *DOCKER_URL* your private docker repository URL; _docker.yourcompany.com:5000_
+
+- *DOCKER_NAME* overwrite image name. Default: package.json _name_ properties
+
+- *DOCKER_SKIP* Skip Docker tag and push commands (dry run with logging). Default: false
+
+- *DOCKER_SILENCE* Do not logging. Default: false
 
 ## Releasing
 
@@ -82,39 +122,3 @@ skipped: docker push docker-publish:0bd4c74
 ```
 
 Where _0bd4c74_ is the last commit id.
-
-## Configuration
-
-There is *zero configuration.* All parameters comes from package.json: *name* and *version* properties.
-
-_* Maybe you want to use your own private docker repository, in this case please see the next chapter._
-
-### Customization
-
-Optionally, in package.json you can customize your docker properties:
-
-```json
-'version': '1.3.5',
-'name': 'docker-publish',
-'config': {
-  'docker': {
-    'ns': 'namespace',
-    'url': 'docker.yourcompany.com:5000',
-    'name': 'myapp',
-    'skip': false,
-    'silence': false
-  }
-}
-```
-
-CLI parameters could overwites package.json properties (except version number).
-
-- *DOCKER_URL* your private docker repository URL; _docker.yourcompany.com:5000_
-
-- *DOCKER_NS* your namespace for image; _namespace/imagename:tag_ Default: empty
-
-- *DOCKER_NAME* overwrite image name. Default: package.json _name_ properties
-
-- *DOCKER_SKIP* Skip Docker tag and push commands (dry run with logging). Default: false
-
-- *DOCKER_SILENCE* Do not logging. Default: false
