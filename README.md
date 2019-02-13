@@ -45,7 +45,7 @@ node ./node_modules/.bin/docker-publish
 
 ## Configuration
 
-There is *zero configuration.* All parameters comes from package.json: *$npm_package_name* and *$npm_package_version* variable (name and version properties).
+There is **zero configuration.** All parameters comes from package.json: *$npm_package_name* and *$npm_package_version* variable (name and version properties).
 
 _* Maybe you want to use your own private docker repository, in this case please see the next chapter._
 
@@ -62,22 +62,25 @@ Optionally, in package.json you can customize your docker properties:
     "url": "docker.yourcompany.com:5000",
     "name": "myapp",
     "skip": false,
-    "silence": false
+    "silence": false,
+    "strictSemver": false
   }
 }
 ```
 
 CLI parameters could overwites package.json properties (except version number).
 
-- *DOCKER_NS* your namespace for image; _namespace/imagename:tag_ Default: empty
+- **DOCKER_NS:** your namespace for image; _namespace/imagename:tag_ Default: empty
 
-- *DOCKER_URL* your private docker repository URL; _docker.yourcompany.com:5000_
+- **DOCKER_URL:** your private docker repository URL; _docker.yourcompany.com:5000_
 
-- *DOCKER_NAME* overwrite image name. Default: package.json _name_ properties
+- **DOCKER_NAME:** overwrite image name. Default: package.json _name_ properties
 
-- *DOCKER_SKIP* Skip Docker tag and push commands (dry run with logging). Default: false
+- **DOCKER_SKIP:** Skip Docker tag and push commands (dry run with logging). Default: false
 
-- *DOCKER_SILENCE* Do not logging. Default: false
+- **DOCKER_SILENCE:** Do not logging. Default: false
+
+- **DOCKER_STRICT_SEMVER:** Strict semantic versioning tag. Default: false. If it is true, then only one tag will be created on docker image as https://semver.org defined and there is no 'v' before version number.
 
 ## Releasing
 
@@ -100,9 +103,16 @@ docker push docker-publish:latest
 
 *v1.3.5-RELEASE-g993df1b:* v1.3.5 - your version number from project.json, g993df1b - git commit ID (7 chars)
 
+If DOCKER_STRICT_SEMVER, strictSemver is *true,* then:
+
+```
+docker tag docker-publish:latest docker-publish:1.3.5
+docker push docker-publish:1.3.5
+```
+
 ## Snapshot
 
-If you want to publish a _snapshot_, the image will be tagged with git commit id, and the commit's number since last version, and pushed.
+If you want to publish a _snapshot_, the image will be tagged with git commit id, and the commit's number since last version, and pushed. If DOCKER_STRICT_SEMVER, strictSemver is *true,* then snapshot is not available.
 
 Output:
 ```

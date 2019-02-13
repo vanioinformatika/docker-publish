@@ -8,16 +8,45 @@ module.exports = (shell, project, tag, strictTag, id) => {
 
   debug(`git tag: ${strictTag}`)
 
+  let dockerStrictSemver = false
+  if (project.config && project.config.docker) {
+    dockerStrictSemver = process.env.DOCKER_STRICT_SEMVER !== undefined ? process.env.DOCKER_STRICT_SEMVER : project.config.docker.strictSemver
+    debug('given dockerStrictSemver: ' + dockerStrictSemver)
+    if (dockerStrictSemver) {
+      if (dockerStrictSemver === 'true' ||
+        dockerStrictSemver === '1' ||
+        dockerStrictSemver === '0' ||
+        dockerStrictSemver === 'false') {
+        dockerStrictSemver = dockerStrictSemver === '1' ? true : dockerStrictSemver
+        dockerStrictSemver = dockerStrictSemver === 'true' ? true : dockerStrictSemver
+        dockerStrictSemver = dockerStrictSemver === 'false' ? false : dockerStrictSemver
+        dockerStrictSemver = dockerStrictSemver === '0' ? false : dockerStrictSemver
+      } else {
+        // invalid dockerStrictSemver value
+        throw new Error('invalid dockerStrictSemver value, valid values is true, false, 0, 1, given: ' + dockerStrictSemver)
+      }
+    } else {
+      dockerStrictSemver = false
+    }
+  }
+  debug('set dockerStrictSemver: ' + dockerStrictSemver)
   const versionNumberArray = tag.split('.')
   let tagList = []
   if (strictTag === tag) {
     // release: npm version
-    tagList.push(versionNumberArray[0])
-    tagList.push(`${versionNumberArray[0]}.${versionNumberArray[1]}`)
-    tagList.push(strictTag)
-    tagList.push(`${strictTag}-RELEASE-${'g' + id}`)
-    tagList.push('latest')
+    if (dockerStrictSemver) {
+      tagList.push(strictTag)
+    } else {
+      tagList.push(versionNumberArray[0])
+      tagList.push(`${versionNumberArray[0]}.${versionNumberArray[1]}`)
+      tagList.push(strictTag)
+      tagList.push(`${strictTag}-RELEASE-${'g' + id}`)
+      tagList.push('latest')
+    }
   } else {
+    if (dockerStrictSemver) {
+      throw new Error('If strictSemver/DOCKER_STRICT_SEMVER is true, then snapshot is not available, see more in README.')
+    }
     // commit/push
     tagList.push(tag)
   }

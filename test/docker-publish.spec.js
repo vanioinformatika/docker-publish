@@ -23,12 +23,55 @@ const projectMyApp = {
   }
 }
 
+const projectMyAppWithStrictSemver = {
+  'name': 'docker-publish',
+  'config': {
+    'docker': {
+      'ns': 'mycompanynamespace',
+      'url': 'docker.mycompany.org:5000',
+      'name': 'myapp',
+      'strictSemver': 'true'
+    }
+  }
+}
+
 const projectWithoutConfig = {
   'name': 'docker-publish'
 }
 
 describe('git tag is', function () {
   describe('on the last commit (npm version) and', function () {
+    describe('configuration from package.json and strictSemver is set', function () {
+      it('strictSemver is true', function () {
+        const dockerPublish = require('../docker-publish.js')(shell, projectMyAppWithStrictSemver, '1.2.3', '1.2.3', '3ab2ff5')
+        let cmdQueue = dockerPublish.getCommandQueue()
+        // release state
+        // tag
+        assert.equal(cmdQueue.length, 2)
+        assert.match(cmdQueue[0], /^docker tag mycompanynamespace\/myapp:latest docker\.mycompany\.org:5000\/mycompanynamespace\/myapp:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
+        // push
+        assert.match(cmdQueue[1], /^docker push docker\.mycompany\.org:5000\/mycompanynamespace\/myapp:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
+      })
+      it('strictSemver is invalid', function () {
+        const projectMyAppWithStrictSemverIsInvalid = {
+          'name': 'docker-publish',
+          'config': {
+            'docker': {
+              'ns': 'mycompanynamespace',
+              'url': 'docker.mycompany.org:5000',
+              'name': 'myapp',
+              'strictSemver': 'invalid_value'
+            }
+          }
+        }
+        try {
+          const dockerPublish = require('../docker-publish.js')(shell, projectMyAppWithStrictSemverIsInvalid, '1.2.3', '1.2.3', '3ab2ff5')
+          assert.notExists(dockerPublish)
+        } catch (err) {
+          assert.exists(err)
+        }
+      })
+    })
     describe('configuration from package.json', function () {
       it('without docker.name', function () {
         const dockerPublish = require('../docker-publish.js')(shell, project, '1.2.3', '1.2.3', '3ab2ff5')
@@ -68,14 +111,14 @@ describe('git tag is', function () {
     it('no configuration', function () {
       const dockerPublish = require('../docker-publish.js')(shell, projectWithoutConfig, '1.2.3', '1.2.3', '3ab2ff5')
       let cmdQueue = dockerPublish.getCommandQueue()
-        // release state
-        // tag
+      // release state
+      // tag
       assert.match(cmdQueue[0], /^docker tag docker-publish:latest docker-publish:[\d]{1,}$/)
       assert.match(cmdQueue[1], /^docker tag docker-publish:latest docker-publish:[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[2], /^docker tag docker-publish:latest docker-publish:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[3], /^docker tag docker-publish:latest docker-publish:[\d]{1,}\.[\d]{1,}\.[\d]{1,}-RELEASE-g[0-9a-f]{7}$/)
       assert.match(cmdQueue[4], /^docker tag docker-publish:latest docker-publish:latest$/)
-        // push
+      // push
       assert.match(cmdQueue[5], /^docker push docker-publish:[\d]{1,}$/)
       assert.match(cmdQueue[6], /^docker push docker-publish:[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[7], /^docker push docker-publish:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
@@ -86,14 +129,14 @@ describe('git tag is', function () {
       process.env.DOCKER_NAME = 'myawesomeapp'
       const dockerPublish = require('../docker-publish.js')(shell, projectWithoutConfig, '1.2.3', '1.2.3', '3ab2ff5')
       let cmdQueue = dockerPublish.getCommandQueue()
-        // release state
-        // tag
+      // release state
+      // tag
       assert.match(cmdQueue[0], /^docker tag myawesomeapp:latest myawesomeapp:[\d]{1,}$/)
       assert.match(cmdQueue[1], /^docker tag myawesomeapp:latest myawesomeapp:[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[2], /^docker tag myawesomeapp:latest myawesomeapp:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[3], /^docker tag myawesomeapp:latest myawesomeapp:[\d]{1,}\.[\d]{1,}\.[\d]{1,}-RELEASE-g[0-9a-f]{7}$/)
       assert.match(cmdQueue[4], /^docker tag myawesomeapp:latest myawesomeapp:latest$/)
-        // push
+      // push
       assert.match(cmdQueue[5], /^docker push myawesomeapp:[\d]{1,}$/)
       assert.match(cmdQueue[6], /^docker push myawesomeapp:[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[7], /^docker push myawesomeapp:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
@@ -105,14 +148,14 @@ describe('git tag is', function () {
       process.env.DOCKER_NS = 'namespace'
       const dockerPublish = require('../docker-publish.js')(shell, projectWithoutConfig, '1.2.3', '1.2.3', '3ab2ff5')
       let cmdQueue = dockerPublish.getCommandQueue()
-        // release state
-        // tag
+      // release state
+      // tag
       assert.match(cmdQueue[0], /^docker tag namespace\/docker-publish:latest namespace\/docker-publish:[\d]{1,}$/)
       assert.match(cmdQueue[1], /^docker tag namespace\/docker-publish:latest namespace\/docker-publish:[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[2], /^docker tag namespace\/docker-publish:latest namespace\/docker-publish:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[3], /^docker tag namespace\/docker-publish:latest namespace\/docker-publish:[\d]{1,}\.[\d]{1,}\.[\d]{1,}-RELEASE-g[0-9a-f]{7}$/)
       assert.match(cmdQueue[4], /^docker tag namespace\/docker-publish:latest namespace\/docker-publish:latest$/)
-        // push
+      // push
       assert.match(cmdQueue[5], /^docker push namespace\/docker-publish:[\d]{1,}$/)
       assert.match(cmdQueue[6], /^docker push namespace\/docker-publish:[\d]{1,}\.[\d]{1,}$/)
       assert.match(cmdQueue[7], /^docker push namespace\/docker-publish:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
