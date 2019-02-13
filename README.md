@@ -26,14 +26,14 @@ npm i -D @vanioinformatika/docker-publish
 
 ## Best practice
 
-Using npm _postversion_: building image, creating docker tags and push into Docker Registry with one command.
+**Using npm run postversion:** building image, creating docker tags and push into Docker Registry with one command.
 
 In package.json set _postversion:_
 
 ```
 "preversion": "git push && npm install && npm test",
 "version": "",
-"postversion": "git push && git push --tags && docker build -t namespace/$npm_package_name:latest . && docker-publish"
+"postversion": "git push && git push --tags && docker build -t $npm_package_config_docker_ns/$npm_package_name:latest . && docker-publish"
 ```
 
 or with hands:
