@@ -34,8 +34,14 @@ module.exports = (shell, project, tag, strictTag, id) => {
   let tagList = []
   if (strictTag === tag) {
     // release: npm version
+    let strictTagResult
     if (dockerStrictSemver) {
-      tagList.push(strictTag)
+      if (strictTag.charAt('v')) {
+        strictTagResult = strictTag.substring(1)
+      } else {
+        strictTagResult = strictTag
+      }
+      tagList.push(strictTagResult)
     } else {
       tagList.push(versionNumberArray[0])
       tagList.push(`${versionNumberArray[0]}.${versionNumberArray[1]}`)

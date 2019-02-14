@@ -43,7 +43,8 @@ describe('git tag is', function () {
   describe('on the last commit (npm version) and', function () {
     describe('configuration from package.json and strictSemver is set', function () {
       it('strictSemver is true', function () {
-        const dockerPublish = require('../docker-publish.js')(shell, projectMyAppWithStrictSemver, '1.2.3', '1.2.3', '3ab2ff5')
+        // npm uses vX.Y.Z tag format
+        const dockerPublish = require('../docker-publish.js')(shell, projectMyAppWithStrictSemver, 'v1.2.3', 'v1.2.3', '3ab2ff5')
         let cmdQueue = dockerPublish.getCommandQueue()
         // release state
         // tag
