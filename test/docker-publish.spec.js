@@ -47,6 +47,7 @@ describe('git tag is', function () {
         let cmdQueue = dockerPublish.getCommandQueue()
         // release state
         // tag
+        console.log(cmdQueue[1])
         assert.equal(cmdQueue.length, 2)
         assert.match(cmdQueue[0], /^docker tag mycompanynamespace\/myapp:latest docker\.mycompany\.org:5000\/mycompanynamespace\/myapp:[\d]{1,}\.[\d]{1,}\.[\d]{1,}$/)
         // push
