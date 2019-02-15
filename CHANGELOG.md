@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.2 - 2019-02-15
+
+ - fix: improper function call (doesn't affect functionality)
+
 ## 2.1.1 - 2019-02-14
 
  - fix: #2 Always tag in vX.Y.Z formats in v2.1.0 versions instead of X.Y.Z
