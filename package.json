@@ -1,6 +1,6 @@
 {
   "name": "@vanioinformatika/docker-publish",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Simple Docker tagging and publishing from npm",
   "author": "István Pató <istvan.pato@gmail.com>",
   "license": "MIT",
