@@ -36,7 +36,7 @@ module.exports = (shell, project, tag, strictTag, id) => {
     // release: npm version
     let strictTagResult
     if (dockerStrictSemver) {
-      if (strictTag.charAt('v')) {
+      if (strictTag.charAt(0)) {
         strictTagResult = strictTag.substring(1)
       } else {
         strictTagResult = strictTag
