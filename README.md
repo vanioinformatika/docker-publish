@@ -31,7 +31,7 @@ npm i -D @vanioinformatika/docker-publish
 In package.json set _postversion:_
 
 ```
-"preversion": "git push && npm install && npm test",
+"preversion": "docker -v && git push && npm install && npm test",
 "version": "",
 "postversion": "git push && git push --tags && docker build -t $npm_package_config_docker_ns/$npm_package_name:latest . && docker-publish"
 ```
