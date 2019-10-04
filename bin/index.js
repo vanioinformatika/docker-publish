@@ -22,7 +22,7 @@ if (project.config && project.config.docker) {
   dockerSilence = process.env.DOCKER_SILENCE || false
 }
 
-const options = {silent: true}
+const options = { silent: true }
 const tag = shell.exec('git describe --tags --always', options).replace(/(\r\n|\n|\r)/gm, '')
 const strictTag = shell.exec('git describe --tags --always --abbrev=0', options).replace(/(\r\n|\n|\r)/gm, '')
 const id = shell.exec('git rev-parse --short HEAD', options).replace(/(\r\n|\n|\r)/gm, '')
@@ -32,7 +32,7 @@ const dockerPublish = require('../docker-publish.js')(shell, project, tag, stric
 // execute commands
 dockerPublish.getCommandQueue().forEach((cmd) => {
   if (!dockerSkip) {
-    shell.exec(cmd, {silent: dockerSilence})
+    shell.exec(cmd, { silent: dockerSilence })
   } else {
     if (!dockerSilence) {
       console.log(`skipped: ${cmd}`)

@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "bin/index.js",
   "scripts": {
+    "lint": "standard --verbose \"test/**/*.js\" \"bin/**/*.js\" | snazzy",
     "test": "mocha",
     "preversion": "git push && npm test",
     "postversion": "git push && git push --tags"
@@ -33,13 +34,32 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "standard": "^11.0.0"
+    "husky": "^3.0.8",
+    "mocha": "^6.2.1",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.1"
   },
   "bin": {
     "docker-publish": "bin/index.js"
   },
   "engines": {
     "node": ">=8.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm test"
+    }
+  },
+  "standard": {
+    "global": [
+      "__basedir",
+      "describe",
+      "it",
+      "before",
+      "after"
+    ],
+    "ignore": [
+      "node_modules"
+    ]
   }
 }
